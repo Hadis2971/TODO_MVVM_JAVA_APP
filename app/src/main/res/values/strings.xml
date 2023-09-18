@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Android_JAVA_TODO_APP_MVVM</string>
+    <string name="app_title">TODO APP</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="todos_list_title">Todos List</string>
+    <string name="description">Description</string>
+    <string name="open_calendar">Open Calendar</string>
+    <string name="add_todo">Add Todo</string>
+    <string name="additional">Additional</string>
+    <string name="todo_title">Todo title...</string>
+    <string name="delete">Delete</string>
+    <string name="update">Update</string>
+</resources>
