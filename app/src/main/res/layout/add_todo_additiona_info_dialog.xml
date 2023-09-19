@@ -32,9 +32,9 @@
             android:layout_gravity="center"
             android:layout_marginEnd="5dp"
             android:layout_weight="0.25"
+            android:background="@drawable/priority_button_states"
             android:gravity="center"
-            android:src="@drawable/baseline_priority_low"
-            android:theme="@style/SecondaryBgButton" />
+            android:src="@drawable/baseline_priority_low" />
 
         <ImageButton
             android:id="@+id/medium_priority_button"
@@ -43,9 +43,9 @@
             android:layout_gravity="center"
             android:layout_marginEnd="5dp"
             android:layout_weight="0.25"
+            android:background="@drawable/priority_button_states"
             android:gravity="center"
-            android:src="@drawable/baseline_priority_medium"
-            android:theme="@style/SecondaryBgButton" />
+            android:src="@drawable/baseline_priority_medium" />
 
         <ImageButton
             android:id="@+id/high_priority_button"
@@ -54,9 +54,9 @@
             android:layout_gravity="center"
             android:layout_marginEnd="5dp"
             android:layout_weight="0.25"
+            android:background="@drawable/priority_button_states"
             android:gravity="center"
-            android:src="@drawable/baseline_priority_high"
-            android:theme="@style/SecondaryBgButton" />
+            android:src="@drawable/baseline_priority_high" />
 
         <ImageButton
             android:id="@+id/critical_priority_button"
@@ -64,9 +64,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="0.25"
+            android:background="@drawable/priority_button_states"
             android:gravity="center"
-            android:src="@drawable/baseline_priority_critical"
-            android:theme="@style/SecondaryBgButton" />
+
+            android:src="@drawable/baseline_priority_critical" />
 
     </LinearLayout>
 

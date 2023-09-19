@@ -3,7 +3,6 @@ package com.practice.android_java_todo_app_mvvm.Dialogs;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +14,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.practice.android_java_todo_app_mvvm.Activities.TodoAdditionalInfoInterface;
-import com.practice.android_java_todo_app_mvvm.Activities.TodosList;
 import com.practice.android_java_todo_app_mvvm.R;
 
 import java.text.ParseException;
@@ -38,6 +36,7 @@ public class AddTodoAdditionalInfoDialog extends DialogFragment implements View.
         this.listener = listener;
         this.isUpdating = false;
     }
+
     public AddTodoAdditionalInfoDialog(TodoAdditionalInfoInterface listener, String newDescription, int priority) {
         this.listener = listener;
         this.newDescription = newDescription;
@@ -80,6 +79,8 @@ public class AddTodoAdditionalInfoDialog extends DialogFragment implements View.
         highPriorityBtn = dialogView.findViewById(R.id.high_priority_button);
         criticalPriorityBtn = dialogView.findViewById(R.id.critical_priority_button);
 
+        this.setActivePriorityBtn();
+
         openCalendar.setOnClickListener(this);
         lowPriorityBtn.setOnClickListener(this);
         mediumPriorityBtn.setOnClickListener(this);
@@ -96,20 +97,56 @@ public class AddTodoAdditionalInfoDialog extends DialogFragment implements View.
         return alertDialog;
     }
 
+    private void setActivePriorityBtn() {
+        switch (this.priority) {
+            case LOW_PRIORITY:
+                this.setPriorityPressedStateBtn(lowPriorityBtn, mediumPriorityBtn, highPriorityBtn, criticalPriorityBtn);
+
+                break;
+            case MEDIUM_PRIORITY:
+                this.setPriorityPressedStateBtn(mediumPriorityBtn, lowPriorityBtn , highPriorityBtn, criticalPriorityBtn);
+
+                break;
+            case HIGH_PRIORITY:
+                this.setPriorityPressedStateBtn(highPriorityBtn, lowPriorityBtn , mediumPriorityBtn , criticalPriorityBtn);
+
+                break;
+            case CRITICAL_PRIORITY:
+                this.setPriorityPressedStateBtn(criticalPriorityBtn, lowPriorityBtn , mediumPriorityBtn , highPriorityBtn);
+
+                break;
+        }
+    }
+
+    private void setPriorityPressedStateBtn (ImageButton active, ImageButton ...inactive) {
+        active.setSelected(true);
+        for (ImageButton imageButton : inactive) {
+            imageButton.setSelected(false);
+        }
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.low_priority_button:
                 priority = LOW_PRIORITY;
+                this.setPriorityPressedStateBtn(lowPriorityBtn, mediumPriorityBtn, highPriorityBtn, criticalPriorityBtn);
+
                 break;
             case R.id.medium_priority_button:
                 priority = MEDIUM_PRIORITY;
+                this.setPriorityPressedStateBtn(mediumPriorityBtn, lowPriorityBtn , highPriorityBtn, criticalPriorityBtn);
+
                 break;
             case R.id.high_priority_button:
                 priority = HIGH_PRIORITY;
+                this.setPriorityPressedStateBtn(highPriorityBtn, lowPriorityBtn , mediumPriorityBtn , criticalPriorityBtn);
+
                 break;
             case R.id.critical_priority_button:
                 priority = CRITICAL_PRIORITY;
+                this.setPriorityPressedStateBtn(criticalPriorityBtn, lowPriorityBtn , mediumPriorityBtn , highPriorityBtn);
+
                 break;
             case R.id.open_calendar:
                 DialogFragment calendarDialog = new CalendarDialog(AddTodoAdditionalInfoDialog.this);

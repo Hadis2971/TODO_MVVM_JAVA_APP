@@ -101,7 +101,11 @@ public class TodosList extends AppCompatActivity implements View.OnClickListener
 
     public void updateTodo (String description, int priority, String date) throws ParseException {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.M.d");
-        long dateInMilliseconds = simpleDateFormat.parse(date).getTime();
+        long dateInMilliseconds = 0L;
+
+        if (date != "" && date != null) {
+            dateInMilliseconds = simpleDateFormat.parse(date).getTime();
+        }
 
         Todo todo = this.todosListAdapter.updateTodo(description, priority, dateInMilliseconds);
 
