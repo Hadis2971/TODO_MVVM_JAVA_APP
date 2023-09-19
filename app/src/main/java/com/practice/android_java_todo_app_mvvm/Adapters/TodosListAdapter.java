@@ -108,7 +108,6 @@ public class TodosListAdapter extends RecyclerView.Adapter<TodosListAdapter.Item
         holder.deleteTodoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("Delete Todo", new Gson().toJson(todos.get(holder.getAdapterPosition())));
                 deleteTodo(holder);
             }
         });
@@ -151,9 +150,6 @@ public class TodosListAdapter extends RecyclerView.Adapter<TodosListAdapter.Item
 
     public Todo updateTodo (String description, int priority, Long date) {
         Todo todo = todos.get(currentTodoIdx);
-
-        Log.d("UPDATE TODO updateTodo 1", priority + " " + description);
-        Log.d("UPDATE TODO updateTodo 2", new Gson().toJson(todo));
 
         if (description != null) {
             todo.setDescription(description);

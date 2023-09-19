@@ -79,8 +79,6 @@ public class AddTodoAdditionalInfoDialog extends DialogFragment implements View.
         highPriorityBtn = dialogView.findViewById(R.id.high_priority_button);
         criticalPriorityBtn = dialogView.findViewById(R.id.critical_priority_button);
 
-        Log.d("WHAT IS THIS", openCalendar.getId() + "SOME ID");
-
         openCalendar.setOnClickListener(this);
         lowPriorityBtn.setOnClickListener(this);
         mediumPriorityBtn.setOnClickListener(this);
@@ -99,7 +97,6 @@ public class AddTodoAdditionalInfoDialog extends DialogFragment implements View.
 
     @Override
     public void onClick(View view) {
-        Log.d("ON CLICK HANDLER", view.getId() + " CLICKED");
         switch (view.getId()) {
             case R.id.low_priority_button:
                 priority = LOW_PRIORITY;
@@ -114,7 +111,6 @@ public class AddTodoAdditionalInfoDialog extends DialogFragment implements View.
                 priority = CRITICAL_PRIORITY;
                 break;
             case R.id.open_calendar:
-                Log.d("CALENDAR OPEN CLICK", "HERE");
                 DialogFragment calendarDialog = new CalendarDialog(AddTodoAdditionalInfoDialog.this);
                 calendarDialog.show(getActivity().getSupportFragmentManager(), "Calendar Fragment Manager");
                 break;

@@ -58,14 +58,10 @@ public class TodosList extends AppCompatActivity implements View.OnClickListener
         userID = intentData.getInt("userID");
 
         todoViewModel.getAllTodos(userID).observe(this, todos -> {
-            Gson gson = new Gson();
-
             todosToRender = todos;
 
             todosListAdapter = new TodosListAdapter(todosToRender, this);
             todoListRecyclerView.setAdapter(todosListAdapter);
-
-            Log.d("LOG todos", gson.toJson(todos));
         });
 
 
@@ -75,7 +71,6 @@ public class TodosList extends AppCompatActivity implements View.OnClickListener
 
 
     public void getAdditionalTodoInfo(String date, int priority, String description) {
-        Log.d("getAdditionalTodoInfo", date + " " + priority);
         this.date = date;
         this.priority = priority;
         this.description = description;
@@ -107,10 +102,7 @@ public class TodosList extends AppCompatActivity implements View.OnClickListener
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.M.d");
         long dateInMilliseconds = simpleDateFormat.parse(date).getTime();
 
-
         Todo todo = this.todosListAdapter.updateTodo(description, priority, dateInMilliseconds);
-
-
 
         todoViewModel.update(todo);
     }
@@ -126,8 +118,6 @@ public class TodosList extends AppCompatActivity implements View.OnClickListener
                 Todo todo = new Todo(addTodoTitleText.getText().toString(), userID);
 
                 todo.setDescription(this.description);
-
-                Log.d("ADD TODO", new Gson().toJson(todo));
 
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.M.d");
 

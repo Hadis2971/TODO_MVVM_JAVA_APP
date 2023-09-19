@@ -35,7 +35,6 @@ public class AuthLogin extends AppCompatActivity implements View.OnClickListener
 
         userViewModel.getLoggedInUser().observe(this, user -> {
             Gson gson = new Gson();
-            Log.d("Logged User", gson.toJson(user));
 
             Intent intent = new Intent(AuthLogin.this, TodosList.class);
             intent.putExtra("userID", user.getId());
@@ -44,7 +43,6 @@ public class AuthLogin extends AppCompatActivity implements View.OnClickListener
     }
 
     private void loginUser () {
-        Log.d("loginUser AuthLogin", usernameInput.getText().toString());
         userViewModel.loginUser(usernameInput.getText().toString(), passwordInput.getText().toString());
 
     }
@@ -53,7 +51,6 @@ public class AuthLogin extends AppCompatActivity implements View.OnClickListener
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.app_login_btn:
-                Log.d("Login Button Switch", "WHAT");
                 loginUser();
                 break;
         }
