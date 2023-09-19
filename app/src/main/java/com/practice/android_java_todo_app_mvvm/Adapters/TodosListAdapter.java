@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
+import com.practice.android_java_todo_app_mvvm.Activities.TodoListAdapterInterface;
 import com.practice.android_java_todo_app_mvvm.Activities.TodosList;
 import com.practice.android_java_todo_app_mvvm.Entities.Todo;
 import com.practice.android_java_todo_app_mvvm.R;
@@ -27,11 +28,11 @@ public class TodosListAdapter extends RecyclerView.Adapter<TodosListAdapter.Item
     private static final int LOW_PRIORITY = 1, MEDIUM_PRIORITY = 2, HIGH_PRIORITY = 3, CRITICAL_PRIORITY = 4;
 
     private List<Todo> todos;
-    private TodosList listener;
+    private TodoListAdapterInterface listener;
     private ItemViewHolder holder;
     private int currentTodoIdx;
 
-    public TodosListAdapter(List<Todo> todos, TodosList listener) {
+    public TodosListAdapter(List<Todo> todos, TodoListAdapterInterface listener) {
         this.todos = todos;
         this.listener = listener;
     }

@@ -25,7 +25,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class TodosList extends AppCompatActivity implements View.OnClickListener {
+
+public class TodosList extends AppCompatActivity implements View.OnClickListener, TodoAdditionalInfoInterface, TodoListAdapterInterface {
 
     private RecyclerView todoListRecyclerView;
     private TodosListAdapter todosListAdapter;

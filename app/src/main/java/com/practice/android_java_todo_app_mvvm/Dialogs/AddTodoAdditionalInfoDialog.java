@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.practice.android_java_todo_app_mvvm.Activities.TodoAdditionalInfoInterface;
 import com.practice.android_java_todo_app_mvvm.Activities.TodosList;
 import com.practice.android_java_todo_app_mvvm.R;
 
@@ -29,15 +30,15 @@ public class AddTodoAdditionalInfoDialog extends DialogFragment implements View.
     private int priority;
 
     private String date, newDescription;
-    private TodosList listener;
+    private TodoAdditionalInfoInterface listener;
     private boolean isUpdating;
 
 
-    public AddTodoAdditionalInfoDialog(TodosList listener) {
+    public AddTodoAdditionalInfoDialog(TodoAdditionalInfoInterface listener) {
         this.listener = listener;
         this.isUpdating = false;
     }
-    public AddTodoAdditionalInfoDialog(TodosList listener, String newDescription, int priority) {
+    public AddTodoAdditionalInfoDialog(TodoAdditionalInfoInterface listener, String newDescription, int priority) {
         this.listener = listener;
         this.newDescription = newDescription;
         this.priority = priority;
