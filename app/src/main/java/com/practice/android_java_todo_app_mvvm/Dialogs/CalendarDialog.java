@@ -37,7 +37,8 @@ public class CalendarDialog extends DialogFragment implements DatePickerDialog.O
 
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-        this.conveyDateListener.conveyDate(year + "." + month + "." + day);
+        int realMonth = month + 1;
+        this.conveyDateListener.conveyDate(day + "." + realMonth + "." + year);
     }
 
     public interface ConveyDate {

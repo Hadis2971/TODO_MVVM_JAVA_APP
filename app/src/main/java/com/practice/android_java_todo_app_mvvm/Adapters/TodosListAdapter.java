@@ -16,6 +16,7 @@ import com.practice.android_java_todo_app_mvvm.Activities.TodoListAdapterInterfa
 import com.practice.android_java_todo_app_mvvm.Activities.TodosList;
 import com.practice.android_java_todo_app_mvvm.Entities.Todo;
 import com.practice.android_java_todo_app_mvvm.R;
+import com.practice.android_java_todo_app_mvvm.Utility.DateConvertor;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -38,10 +39,10 @@ public class TodosListAdapter extends RecyclerView.Adapter<TodosListAdapter.Item
     }
 
 
-    public void updateList (List<Todo> newList) {
-        todos.addAll(newList);
+    public void updateList (Todo todo) {
+        //todos.add(todo);
 
-        this.notifyDataSetChanged();
+        this.notifyItemInserted(todos.size() - 1);
 
     }
 
@@ -89,16 +90,14 @@ public class TodosListAdapter extends RecyclerView.Adapter<TodosListAdapter.Item
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        this.holder = holder;
+    public void onBindViewHolder(@NonNull ItemViewHolder itemViewHolder, int position) {
+        holder = itemViewHolder;
 
         Todo todo = this.todos.get(position);
 
-        Date date = new Date(TimeUnit.SECONDS.toMillis(todo.getDueDate()));
-        String pattern = "MM/dd/yyyy HH:mm:ss";
-        DateFormat df = new SimpleDateFormat(pattern);
-        String dateAsString = df.format(date);
-
+        String pattern = "dd.MM.yyyy";
+        DateConvertor dateConvertor = new DateConvertor(pattern);
+        String dateAsString = dateConvertor.LongToDate(todo.getDueDate());
 
         holder.title.setText(todo.getTitle());
         holder.description.setText(todo.getDescription());

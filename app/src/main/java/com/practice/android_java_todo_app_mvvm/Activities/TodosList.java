@@ -16,6 +16,7 @@ import com.practice.android_java_todo_app_mvvm.Adapters.TodosListAdapter;
 import com.practice.android_java_todo_app_mvvm.Dialogs.AddTodoAdditionalInfoDialog;
 import com.practice.android_java_todo_app_mvvm.Entities.Todo;
 import com.practice.android_java_todo_app_mvvm.R;
+import com.practice.android_java_todo_app_mvvm.Utility.DateConvertor;
 import com.practice.android_java_todo_app_mvvm.ViewModels.TodoViewModel;
 
 import java.text.ParseException;
@@ -100,11 +101,13 @@ public class TodosList extends AppCompatActivity implements View.OnClickListener
     }
 
     public void updateTodo (String description, int priority, String date) throws ParseException {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.M.d");
+        String pattern = "dd.MM.yyyy";
+        DateConvertor dateConvertor = new DateConvertor(pattern);
         long dateInMilliseconds = 0L;
 
         if (date != "" && date != null) {
-            dateInMilliseconds = simpleDateFormat.parse(date).getTime();
+            Log.d(date, "UPDATED DATE");
+            dateInMilliseconds = dateConvertor.dateToLong(date);
         }
 
         Todo todo = this.todosListAdapter.updateTodo(description, priority, dateInMilliseconds);
@@ -124,16 +127,10 @@ public class TodosList extends AppCompatActivity implements View.OnClickListener
 
                 todo.setDescription(this.description);
 
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy.M.d");
+                String pattern = "dd.MM.yyyy";
+                DateConvertor dateConvertor = new DateConvertor(pattern);
 
-                long milliseconds;
-                try {
-                    Date date = simpleDateFormat.parse(this.date);
-                    milliseconds = date.getTime();
-                } catch (ParseException e) {
-                    throw new RuntimeException(e);
-                }
-
+                Long milliseconds = dateConvertor.dateToLong(this.date);
 
                 if (this.date != null) todo.setDueDate(milliseconds);
                 if (this.priority != 0) todo.setPriority(this.priority);
@@ -142,7 +139,7 @@ public class TodosList extends AppCompatActivity implements View.OnClickListener
                 this.todosToRender.add(todo);
                 todoViewModel.insert(todo);
 
-                this.todosListAdapter.updateList(todosToRender);
+                this.todosListAdapter.updateList(todo);
                 break;
             case R.id.add_additional_info_todo_btn:
                 addTodoAdditionalInfoDialog.show(getSupportFragmentManager(), "OPEN ADD TODO DIALOG");
